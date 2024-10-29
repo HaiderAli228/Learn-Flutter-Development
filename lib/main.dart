@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/calculator.dart';
-import 'package:learn_flutter/form_validation.dart';
-import 'package:learn_flutter/min_cal.dart';
+import 'package:learn_flutter/routes/routes.dart';
+import 'package:learn_flutter/routes/routes_name.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
             buttonColor: Colors.blue,
             textTheme: ButtonTextTheme.normal,
           )),
-      home: const FormValidation(),
+      initialRoute: RoutesName.calculatorScreen,
+      onGenerateRoute: Routes.generateRoutes,
     );
   }
 }
