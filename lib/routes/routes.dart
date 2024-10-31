@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/calculator.dart';
 import 'package:learn_flutter/form_validation.dart';
-import 'package:learn_flutter/min_cal.dart';
 import 'package:learn_flutter/routes/routes_name.dart';
  // Home screen view
 
@@ -20,11 +19,7 @@ class Routes {
         return _buildPageRoute(
           const FormValidation(),
         );
-    // When navigating to the Splash screen
-      case RoutesName.minCalScreen:
-        return _buildPageRoute(
-          const MinCal(),
-        );
+
     // If the route name doesn't match any predefined routes, display a "No Route Found" screen
       default:
         return _buildPageRoute(
