@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
             buttonColor: Colors.blue,
             textTheme: ButtonTextTheme.normal,
           )),
-      initialRoute: RoutesName.calculatorScreen,
+      initialRoute: RoutesName.liquidSwipeScreen,
       onGenerateRoute: Routes.generateRoutes,
     );
   }

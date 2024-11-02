@@ -2,25 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:learn_flutter/calculator.dart';
 import 'package:learn_flutter/form_validation.dart';
 import 'package:learn_flutter/routes/routes_name.dart';
- // Home screen view
+import '../animations/liquid_swipe.dart';
 
-// Routes class manages app's navigation by generating routes based on RouteSettings
 class Routes {
-  // Method to generate routes based on the route name provided in RouteSettings
   static Route<bool?> generateRoutes(RouteSettings settings) {
     switch (settings.name) {
-    // When navigating to the Home screen
       case RoutesName.calculatorScreen:
         return _buildPageRoute(
           const Calculator(),
         );
-    // When navigating to the Add New Notes screen
+      case RoutesName.liquidSwipeScreen:
+        return _buildPageRoute(
+          SimpleLiquidSwipe(),
+        );
       case RoutesName.formScreen:
         return _buildPageRoute(
           const FormValidation(),
         );
-
-    // If the route name doesn't match any predefined routes, display a "No Route Found" screen
       default:
         return _buildPageRoute(
           const Scaffold(
