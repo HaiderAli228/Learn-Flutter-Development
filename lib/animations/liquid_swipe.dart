@@ -48,7 +48,6 @@ class SimpleLiquidSwipe extends StatelessWidget {
             waveType: WaveType.liquidReveal,
             slideIconWidget: GestureDetector(
               onTap: () {
-                print("Tapped");
                 int currentPage = _liquidController.currentPage;
                 if (currentPage > 0) {
                   _liquidController.animateToPage(page: currentPage - 1);
