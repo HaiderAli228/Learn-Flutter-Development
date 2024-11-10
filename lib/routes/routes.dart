@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/animations/lottie_animation.dart';
 import 'package:learn_flutter/calculator.dart';
 import 'package:learn_flutter/form_validation.dart';
 import 'package:learn_flutter/routes/routes_name.dart';
@@ -10,6 +11,10 @@ class Routes {
       case RoutesName.calculatorScreen:
         return _buildPageRoute(
           const Calculator(),
+        );
+      case RoutesName.lottieScreen:
+        return _buildPageRoute(
+          const LottieAnimation(),
         );
       case RoutesName.liquidSwipeScreen:
         return _buildPageRoute(
