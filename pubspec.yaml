@@ -48,6 +48,7 @@ dependencies:
   flutter_staggered_grid_view: ^0.7.0
   lottie: ^3.1.2
   font_awesome_flutter: ^10.8.0
+  image_picker:
   fancy_popups_new: ^0.0.6
   badges: ^3.1.2
   flutter_carousel_intro: ^1.0.11

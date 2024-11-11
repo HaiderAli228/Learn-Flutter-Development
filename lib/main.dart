@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/nativeFun/camera_access.dart';
 import 'package:learn_flutter/routes/routes.dart';
 import 'package:learn_flutter/routes/routes_name.dart';
 
@@ -22,8 +23,7 @@ class MyApp extends StatelessWidget {
             buttonColor: Colors.blue,
             textTheme: ButtonTextTheme.normal,
           )),
-      initialRoute: RoutesName.lottieScreen,
-      onGenerateRoute: Routes.generateRoutes,
+     home: CameraAccess(),
     );
   }
 }
