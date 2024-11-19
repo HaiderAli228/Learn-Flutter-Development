@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/nativeFun/camera_access.dart';
-import 'package:learn_flutter/routes/routes.dart';
-import 'package:learn_flutter/routes/routes_name.dart';
+import 'bottom_sheet.dart';
 
 
 void main() {
@@ -23,7 +21,7 @@ class MyApp extends StatelessWidget {
             buttonColor: Colors.blue,
             textTheme: ButtonTextTheme.normal,
           )),
-     home: CameraAccess(),
+     home: BottomBar(),
     );
   }
 }
