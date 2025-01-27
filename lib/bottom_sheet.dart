@@ -33,7 +33,7 @@ class BottomBarState extends State<BottomBar> {
         animationDuration: const Duration(milliseconds: 300),
         animationCurve: Curves.linear,
         items: const [
-          Icon(Icons.screen_search_desktop_rounded,
+          Icon(Icons.account_balance_rounded,
               color: AppColors.themeIconColor, size: 30),
           Icon(Icons.assignment_rounded,
               color: AppColors.themeIconColor, size: 30),
