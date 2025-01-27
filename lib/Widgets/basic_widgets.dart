@@ -21,6 +21,7 @@ class _BasicWidgetsState extends State<BasicWidgets> {
           ),
         ),
       ),
+      body: Center(),
     );
   }
 }
