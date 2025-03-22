@@ -1,6 +1,8 @@
 import 'package:fancy_popups_new/fancy_popups_new.dart';
 import 'package:flutter/material.dart';
 
+import 'database/shared_pref.dart';
+
 class FormValidation extends StatefulWidget {
   const FormValidation({super.key});
 
@@ -12,11 +14,9 @@ class _FormValidationState extends State<FormValidation> {
   TextEditingController emailController = TextEditingController();
   TextEditingController ageController = TextEditingController();
   TextEditingController uNameController = TextEditingController();
-  TextEditingController cPasswordController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  bool valueIs1 = false;
-  bool valueIs2= false;
-  bool valueIs3 = false;
+
   void success() {
     showDialog(
         context: context,
@@ -60,6 +60,7 @@ class _FormValidationState extends State<FormValidation> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                // username
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
@@ -101,6 +102,7 @@ class _FormValidationState extends State<FormValidation> {
                     ),
                   ),
                 ),
+                // email
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
@@ -142,6 +144,49 @@ class _FormValidationState extends State<FormValidation> {
                     ),
                   ),
                 ),
+                // password
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Password required";
+                      }
+                      if (value.length < 8) {
+                        return "Password length should be 8 Character";
+                      }
+                      return null;
+                    },
+                    controller: passwordController,
+                    autocorrect: true,
+                    cursorColor: Colors.blue,
+                    cursorErrorColor: Colors.red,
+                    mouseCursor: MouseCursor.defer,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      filled: true,
+                      hintText: "Email",
+                      hintStyle: TextStyle(color: Colors.grey.shade500),
+                      fillColor: Colors.grey.shade100,
+                      prefixIcon: Icon(
+                        Icons.email_rounded,
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          borderSide: BorderSide(color: Colors.grey.shade100)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          borderSide: BorderSide(color: Colors.grey.shade100)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          borderSide: BorderSide(color: Colors.grey.shade100)),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          borderSide: BorderSide(color: Colors.red)),
+                    ),
+                  ),
+                ),
+                //age
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
@@ -183,50 +228,30 @@ class _FormValidationState extends State<FormValidation> {
                     ),
                   ),
                 ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text("Reading"),
-                    ),
-                    Checkbox(
-                        value: valueIs1,
-                        onChanged: (newValue) {
-                          setState(() {
-                            valueIs1 = !valueIs1;
-                          });
-                        }),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text("Walking"),
-                    ),
-                    Checkbox(
-                        value: valueIs2,
-                        onChanged: (newValue) {
-                          setState(() {
-                            valueIs2 = !valueIs2;
-                          });
-                        }),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text("Sleeping"),
-                    ),
-                    Checkbox(
-                        value: valueIs3,
-                        onChanged: (newValue) {
-                          setState(() {
-                            valueIs3 = !valueIs3;
-                          });
-                        })
-                  ],
-                ),
-
                 // this button perform validation
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
-                    onTap: () {
+                    onTap: () async {
                       if (_formKey.currentState!.validate()) {
+                        final storedEmail = await SharedPref().getDB();
+                        if (storedEmail == null || storedEmail.isEmpty) {
+                          print("Shared Pref created");
+                          SharedPref().createDB(
+                              emailController.text,
+                              passwordController.text,
+                              int.parse(ageController.text),
+                              uNameController.text);
+                          print(SharedPref().getDB());
+                        }
+                        if (await SharedPref()
+                            .emailRegistered(emailController.text)) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("Email Already Registred")));
+                          print("Email Already Registred");
+                        } else {
+                          print("Shared Pref already created");
+                        }
                         success();
                       }
                     },
