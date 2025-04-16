@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/state-management/provider/count.dart';
+import 'package:provider/provider.dart';
 import 'bottom_sheet.dart';
 
-
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    builder: (context, child) {
+      return MyApp();
+    },
+    providers: [
+      ChangeNotifierProvider(
+        create: (context) => CountProvider(),
+      )
+    ],
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +31,7 @@ class MyApp extends StatelessWidget {
             buttonColor: Colors.blue,
             textTheme: ButtonTextTheme.normal,
           )),
-     home: BottomBar(),
+      home: CountExample(),
     );
   }
 }
